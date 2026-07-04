@@ -31,10 +31,22 @@ The React front end for the actually.mi social platform.
 npm run fe:start:dev
 ```
 
+### Run in production
+
+```bash
+npm run fe:preview
+```
+
+### Build for development
+
+```bash
+npm run fe:build:dev
+```
+
 ### Build for production
 
 ```bash
-npm run fe:build
+npm run fe:build:prod
 ```
 
 ### Run tests
@@ -47,6 +59,12 @@ npm run fe:test
 
 ```bash
 npm run fe:test:coverage
+```
+
+### Run linting
+
+```bash
+npm run fe:lint
 ```
 
 # Actually.Mi Back End
@@ -90,7 +108,7 @@ npm install
 
 ### Environment variables
 
-Create a `.env` file in the root with the following:
+Create a `.env` file in the apps/backend folder with the following:
 
 ```
 DATABASE_URL=postgresql://user:your_password@localhost:####/actually_mi
@@ -102,13 +120,13 @@ REDIS_URL="rediss://default:*****@distinct-quail-######.upstash.io:####"
 ### Run in development
 
 ```bash
-npm run start:dev
+npm run be:start:dev
 ```
 
 ### Build for production and run production instance
 
 ```bash
-npm run start:prod
+npm run be:start:prod
 ```
 
 ## Testing
@@ -116,19 +134,19 @@ npm run start:prod
 ### Run tests
 
 ```bash
-npm run test
+npm run be:test
 ```
 
 ### Run tests with coverage
 
 ```bash
-npm run test:coverage
+npm run be:test:coverage
 ```
 
 ### Run linting
 
 ```bash
-npm run lint
+npm run be:lint
 ```
 
 ## API Documentation
