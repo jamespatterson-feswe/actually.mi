@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx lint-staged
+npm run be:test:coverage
+npm version patch --no-git-tag-version
+git add package.json

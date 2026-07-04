@@ -1,5 +1,7 @@
 # ActuallyMi
 
+A full-stack social platform monorepo built with Node.js/Express, React, and TypeScript. Features JWT auth, PostgreSQL, Redis caching, and 80% or higher test coverage.
+
 ## Actually.Mi Front End
 
 The React front end for the actually.mi social platform.

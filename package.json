@@ -1,7 +1,7 @@
 {
   "name": "actually.mi",
   "description": "actually-mi monorepo: backend-api, frontend-ui",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "scripts": {
     "be:build": "nx build backend",
@@ -27,7 +27,7 @@
     "esbuild": "^0.27.0",
     "eslint-config-prettier": "^10.0.0",
     "husky": "^9.1.7",
-    "jest-environment-node": "~30.3.0",
+    "jest-environment-node": "~30.4.1",
     "jest-util": "~30.3.0",
     "lint-staged": "^17.0.8",
     "nx": "23.0.1",
