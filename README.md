@@ -2,7 +2,44 @@
 
 ## Actually.Mi Front End
 
-Add
+The React front end for the actually.mi social platform.
+
+## Tech Stack
+
+- **Framework:** React 19 + Vite
+- **Language:** TypeScript
+- **Routing:** React Router
+- **State/Data:** TanStack Query
+- **Styling:** Tailwind CSS
+- **HTTP:** Axios
+- **Validation:** Zod
+
+## Pages
+
+- `/login` - User login
+- `/register` - User registration
+- `/feed` - Main post feed
+- `/profile` - User profile and settings
+
+## Getting Started
+
+### Run in development
+
+```bash
+npm run fe:start:dev
+```
+
+### Build for production
+
+```bash
+npm run fe:build
+```
+
+### Run tests
+
+```bash
+npm run fe:test
+```
 
 # Actually.Mi Back End
 
