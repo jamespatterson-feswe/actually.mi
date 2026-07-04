@@ -2,7 +2,6 @@ import { NextFunction, Response } from 'express';
 import { validator } from './auth.middleware';
 import { ValidationRequest } from './auth.interface';
 import { env } from '../../lib/env';
-
 import jwt from 'jsonwebtoken';
 
 describe('Authorization validation', () => {
@@ -25,13 +24,12 @@ describe('Authorization validation', () => {
   });
 
   describe('Error scenarios', () => {
-    it('should expect to return a 401 when no authorization header is present', () => {
+    it('should expect to return a 401 when no cookie is present', () => {
       validator(
-        { headers: {}, userId: '' } as unknown as ValidationRequest,
+        { cookies: {}, userId: '' } as unknown as ValidationRequest,
         res,
         next
       );
-
       expect(res.status).toHaveBeenCalledWith(401);
       expect(res.json).toHaveBeenCalledWith({
         statusDesc: 'Error: no authorization token found.',
@@ -39,33 +37,15 @@ describe('Authorization validation', () => {
       expect(next).not.toHaveBeenCalled();
     });
 
-    it('should expect to return a 401 when no Bearer is appended to token', () => {
-      validator(
-        {
-          headers: { authorization: invalidToken },
-          userId: '',
-        } as unknown as ValidationRequest,
-        res,
-        next
-      );
-
-      expect(res.status).toHaveBeenCalledWith(401);
-      expect(res.json).toHaveBeenCalledWith({
-        statusDesc: 'Error: token is missing Bearer signature.',
-      });
-      expect(next).not.toHaveBeenCalled();
-    });
-
     it('should expect to return a 401 when token is invalid', () => {
       validator(
         {
-          headers: { authorization: `Bearer ${invalidToken}` },
+          cookies: { token: invalidToken },
           userId: '',
         } as unknown as ValidationRequest,
         res,
         next
       );
-
       expect(res.status).toHaveBeenCalledWith(401);
       expect(res.json).toHaveBeenCalledWith({
         statusDesc: 'Error: Invalid token.',
@@ -76,16 +56,15 @@ describe('Authorization validation', () => {
     it('should expect a 401 when token is expired', () => {
       validator(
         {
-          headers: { authorization: `Bearer ${expiredToken}` },
+          cookies: { token: expiredToken },
           userId: '',
         } as unknown as ValidationRequest,
         res,
         next
       );
-
       expect(res.status).toHaveBeenCalledWith(401);
       expect(res.json).toHaveBeenCalledWith({
-        statusDesc: 'Error: the token used has expired.',
+        statusDesc: 'Error: The token used has expired.',
       });
       expect(next).not.toHaveBeenCalled();
     });
@@ -95,13 +74,12 @@ describe('Authorization validation', () => {
     it('should expect next to be called', () => {
       validator(
         {
-          headers: { authorization: `Bearer ${validToken}` },
+          cookies: { token: validToken },
           userId: 'test-id',
         } as unknown as ValidationRequest,
         res,
         next
       );
-
       expect(next).toHaveBeenCalled();
     });
   });

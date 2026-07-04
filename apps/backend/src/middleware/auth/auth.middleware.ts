@@ -9,31 +9,25 @@ export const validator = (
   res: Response,
   next: NextFunction
 ) => {
-  const authorization = req.headers.authorization;
+  const token = req.cookies?.token;
 
-  if (!authorization || !authorization.startsWith('Bearer ')) {
-    res.status(401).json({
-      statusDesc: !authorization
-        ? 'Error: no authorization token found.'
-        : 'Error: token is missing Bearer signature.',
-    });
-
+  if (!token) {
+    res
+      .status(401)
+      .json({ statusDesc: 'Error: no authorization token found.' });
     return;
   }
-
-  const token = authorization.split(' ')[1];
 
   try {
     const decoded = jwt.verify(token, env.jwtSecret);
 
     req.userId = (decoded as DecodedToken).userId;
-
     next();
   } catch (error) {
     res.status(401).json({
       statusDesc:
         error instanceof jwt.TokenExpiredError
-          ? 'Error: the token used has expired.'
+          ? 'Error: The token used has expired.'
           : 'Error: Invalid token.',
     });
   }

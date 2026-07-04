@@ -74,6 +74,19 @@ router.post('/', async (req, res) => {
           return;
         }
 
+        res.cookie(
+          'token',
+          jwt.sign({ userId: id }, env.jwtSecret, {
+            expiresIn: '7d',
+          }),
+          {
+            httpOnly: true,
+            secure: env.nodeEnv === 'production',
+            sameSite: 'strict',
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in ms
+          }
+        );
+
         res.status(200).json({
           statusDesc: STATIC_CONTENT.LOGIN.POST.success,
           user: {
@@ -81,9 +94,6 @@ router.post('/', async (req, res) => {
             email,
             username,
           },
-          token: jwt.sign({ userId: id }, env.jwtSecret, {
-            expiresIn: '7d',
-          }),
         });
 
         return;

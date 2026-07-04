@@ -1,5 +1,4 @@
 import nx from '@nx/eslint-plugin';
-
 export default [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
@@ -11,20 +10,11 @@ export default [
       '**/vite.config.*.timestamp*',
       '**/test-output',
       'eslint.config.mjs',
+      '**/tailwind.config.js',
     ],
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    languageOptions: {
-      parserOptions: {
-        tsconfigRootDir: import.meta.dirname,
-        project: [
-          'apps/backend/tsconfig.json',
-          'apps/react-frontend/tsconfig.json',
-          'apps/react-frontend/tsconfig.spec.json',
-        ],
-      },
-    },
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
@@ -52,7 +42,6 @@ export default [
       '**/*.cjs',
       '**/*.mjs',
     ],
-    // Override or add rules here
     rules: {},
   },
 ];

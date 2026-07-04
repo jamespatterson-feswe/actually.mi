@@ -3,6 +3,7 @@ import { env } from './lib/env';
 import { swaggerSpec } from './lib/swagger';
 
 import authRoutes from './routes';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -13,8 +14,15 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:4200',
+    credentials: true,
+  })
+);
 app.use(express.json());
+
+app.use(cookieParser());
 
 /** collection of middleware methods that set security related HTTP headers on every response, browser security
     helps protect against XSS attacks, blocks clickjacking attacks, prevents MIME sniffing attacks, use HTTPS only, controls broswer DNS prefetching */

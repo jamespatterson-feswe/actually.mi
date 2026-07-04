@@ -1,7 +1,7 @@
 {
   "name": "actually.mi",
   "description": "actually-mi monorepo: backend-api, frontend-ui",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "private": true,
   "scripts": {
     "be:build:dev": "nx build backend --configuration=development",

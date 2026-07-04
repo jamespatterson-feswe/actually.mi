@@ -7,6 +7,7 @@ export const fields = '$fields$';
 export const PATHS = {
   auth: '/auth',
   login: '/login',
+  logout: '/logout',
   mi: '/mi',
   register: '/register',
 };
@@ -22,6 +23,11 @@ export const STATIC_CONTENT = {
       missing_fields: `${err} Login was unsuccessful. ${missing} ${fields}`,
       no_credentials: `${err} There is no user information for the login credentials.`,
       success: `${succ} Login was successful.`,
+    },
+  },
+  LOGOUT: {
+    POST: {
+      success: `${succ} Logged out successfully.`,
     },
   },
   MI: {

@@ -20,7 +20,7 @@ describe('App', () => {
       </BrowserRouter>,
     );
     expect(
-      getAllByText(new RegExp('Welcome react-frontend', 'gi')).length > 0,
+      getAllByText(new RegExp('React Front End Works!', 'gi')).length > 0,
     ).toBeTruthy();
   });
 });
