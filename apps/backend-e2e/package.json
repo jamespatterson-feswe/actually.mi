@@ -1,0 +1,26 @@
+{
+  "name": "@actually-mi/backend-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@actually-mi/backend"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{projectRoot}/test-output/jest/coverage"
+        ],
+        "dependsOn": [
+          "@actually-mi/backend:build",
+          "@actually-mi/backend:serve"
+        ],
+        "options": {
+          "jestConfig": "apps/backend-e2e/jest.config.cts",
+          "passWithNoTests": true
+        }
+      }
+    }
+  }
+}
