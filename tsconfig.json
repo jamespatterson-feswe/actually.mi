@@ -8,6 +8,12 @@
     },
     {
       "path": "./apps/backend"
+    },
+    {
+      "path": "./apps/react-frontend-e2e"
+    },
+    {
+      "path": "./apps/react-frontend"
     }
   ]
 }

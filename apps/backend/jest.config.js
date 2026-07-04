@@ -1,9 +1,10 @@
 /** @type {import('jest').Config} */
-
 module.exports = {
-  preset: 'ts-jest',
   testEnvironment: 'node',
   testMatch: ['**/*.spec.ts'],
+  transform: {
+    '^.+\\.[tj]s$': ['@swc/jest', {}],
+  },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
@@ -13,11 +14,11 @@ module.exports = {
     '!src/lib/env.ts',
     '!src/lib/prisma.ts',
     '!src/lib/rate-limiter.ts',
+    '!src/lib/redis.ts',
     '!src/lib/sanitizer.ts',
-    '!src/index.ts',
+    '!src/main.ts',
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  transformIgnorePatterns: ['node_modules/(?!(jsdom|dompurify|@exodus)/)'],
   coverageThreshold: {
     global: {
       statements: 80,
