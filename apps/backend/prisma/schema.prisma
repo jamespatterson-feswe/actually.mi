@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ===== USER AUTHENTICATION =====
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  birthDate DateTime?
+  bio       String?
+  avatar    String?
+  createdAt DateTime @default(now())
+  posts     Post[]
+  maliciousBehaviors MaliciousBehavior[]
+}
+
+// ===== USER CONTENT =====
+model Post {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+// ===== MALICIOUS USER BEHAVIOR =====
+model MaliciousBehavior {
+  id           String   @id @default(cuid())
+  userId       String
+  behaviorType String   // "XSS", "BRUTE_FORCE", "INVALID_TOKEN" etc.
+  description  String   // "Attempt in bio field"
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id])
+}

@@ -1,9 +1,13 @@
-# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+.env
+
+# Backend specific
+apps/backend/src/generated/prisma
 
 # compiled output
 dist
 tmp
 out-tsc
+coverage
 
 # dependencies
 node_modules

@@ -1,14 +1,10 @@
-import express from 'express';
+import { env } from './lib/env';
+import app from './app';
 
-const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
-
-const app = express();
-
-app.get('/', (req, res) => {
-    res.send({ 'message': 'Hello API'});
-});
-
-app.listen(port, host, () => {
-    console.log(`[ ready ] http://${host}:${port}`);
-});
+app
+  .listen(env.port, () => {
+    console.log(`Server is running on port ${env.port}.`);
+  })
+  .on('error', (err) => {
+    console.error('Server failed to start: ', err);
+  });

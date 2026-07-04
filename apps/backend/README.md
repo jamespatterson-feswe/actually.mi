@@ -1,10 +1,4 @@
-# ActuallyMi
-
-## Actually.Mi Front End
-
-Add
-
-# Actually.Mi Back End
+# actually.mi API
 
 A mostly production-ready REST API for the actually.mi social platform, built with Node.js, Express, and TypeScript.
 

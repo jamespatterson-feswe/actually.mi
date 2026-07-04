@@ -1,42 +1,46 @@
 {
-  "name": "@actually-mi/source",
-  "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {},
+  "name": "actually.mi",
+  "description": "actually-mi monorepo: backend-api, frontend-ui",
+  "version": "0.1.4",
   "private": true,
-  "dependencies": {
-    "axios": "^1.6.0",
-    "express": "^5.1.0"
+  "scripts": {
+    "be:build": "nx build backend",
+    "be:kill": "npx kill-port 8080",
+    "be:start:dev": "nx serve backend",
+    "be:start:prod": "nx build backend && node dist/apps/backend/main.js",
+    "be:test": "nx test backend --forceExit",
+    "be:test:coverage": "nx test backend --coverage --forceExit",
+    "be:test:watch": "nx test backend --watch",
+    "be:lint": "nx lint backend",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "@eslint/js": "^9.8.0",
     "@nx/esbuild": "23.0.1",
     "@nx/eslint": "23.0.1",
     "@nx/eslint-plugin": "23.0.1",
     "@nx/jest": "23.0.1",
     "@nx/js": "23.0.1",
-    "@nx/node": "23.0.1",
+    "@nx/node": "^23.0.1",
     "@nx/workspace": "23.0.1",
     "@swc/helpers": "~0.5.18",
     "@swc/jest": "~0.2.38",
-    "@types/express": "^5.0.0",
-    "@types/jest": "~30.0.0",
-    "@types/node": "^22.0.0",
     "esbuild": "^0.27.0",
-    "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
-    "jest": "~30.3.0",
+    "husky": "^9.1.7",
     "jest-environment-node": "~30.3.0",
     "jest-util": "~30.3.0",
+    "lint-staged": "^17.0.8",
     "nx": "23.0.1",
-    "prettier": "~3.6.2",
-    "ts-jest": "^29.4.0",
-    "ts-node": "10.9.1",
-    "tslib": "^2.3.0",
-    "typescript": "~5.9.2",
-    "typescript-eslint": "^8.40.0"
+    "prettier": "^3.8.4",
+    "tslib": "^2.3.0"
   },
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "lint-staged": {
+    "apps/backend/src/**/*.ts": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  }
 }

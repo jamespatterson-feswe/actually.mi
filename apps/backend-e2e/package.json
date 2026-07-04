@@ -4,7 +4,7 @@
   "private": true,
   "nx": {
     "implicitDependencies": [
-      "@actually-mi/backend"
+      "backend"
     ],
     "targets": {
       "e2e": {
@@ -13,8 +13,8 @@
           "{projectRoot}/test-output/jest/coverage"
         ],
         "dependsOn": [
-          "@actually-mi/backend:build",
-          "@actually-mi/backend:serve"
+          "backend:build",
+          "backend:serve"
         ],
         "options": {
           "jestConfig": "apps/backend-e2e/jest.config.cts",
