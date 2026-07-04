@@ -43,6 +43,12 @@ npm run fe:build
 npm run fe:test
 ```
 
+### Run tests with coverage
+
+```bash
+npm run fe:test:coverage
+```
+
 # Actually.Mi Back End
 
 A mostly production-ready REST API for the actually.mi social platform, built with Node.js, Express, and TypeScript.
