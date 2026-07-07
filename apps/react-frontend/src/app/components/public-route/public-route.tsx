@@ -11,9 +11,10 @@ import React from 'react';
  * @returns { React.FC }
  */
 const PublicRoute: React.FC = () => {
-  const { isLoading, data: user } = useCurrentUser();
+  const { data: user } = useCurrentUser(
+    sessionStorage.getItem('loggedIn') === 'true',
+  );
 
-  if (isLoading) return <div>Loading...</div>;
   if (user) return <Navigate to="/feed" replace />;
 
   return <Outlet />;

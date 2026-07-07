@@ -7,11 +7,12 @@ import { getCurrentUser } from '../services/auth/auth.service';
  * @function useCurrentUser
  * @returns { ADD_TYPE }
  */
-export const useCurrentUser = () => {
+export const useCurrentUser = (enabled = true) => {
   return useQuery({
     queryKey: ['currentUser'], // cache key
     queryFn: getCurrentUser, // this is the method being called from the auth service to GET the user data
     retry: false, // Does not retry, if it fails, there is no user data.
-    staleTime: 15 * 60 * 1000, // 15 minutes before assuming data is stale
+    staleTime: 15 * 60 * 1000, // 15 minutes before assuming data is stale,
+    enabled
   });
 };
